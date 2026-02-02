@@ -3,10 +3,8 @@ import CelebrationPage from "./CelebrationPage";
 
 export default function ValentineProposal() {
   const [answer, setAnswer] = useState<string | null>(null);
-  const [noButtonPosition, setNoButtonPosition] = useState({ x: 0, y: 0 });
   const [noButtonText, setNoButtonText] = useState("No");
   const [noButtonClicks, setNoButtonClicks] = useState(0);
-  const [noButtonRotation, setNoButtonRotation] = useState(0);
 
   const noButtonMessages = [
     "No",
@@ -28,25 +26,6 @@ export default function ValentineProposal() {
     setAnswer("yes");
   };
 
-  const handleNoHover = () => {
-    // Generate random position with proper boundaries
-    const padding = 20; // Add padding from edges
-    const buttonWidth = 250; // Approximate button width with padding
-    const buttonHeight = 100; // Approximate button height with padding
-
-    const maxX = Math.max(padding, window.innerWidth - buttonWidth - padding);
-    const maxY = Math.max(padding, window.innerHeight - buttonHeight - padding);
-
-    const randomX = padding + Math.random() * (maxX - padding);
-    const randomY = padding + Math.random() * (maxY - padding);
-
-    // Random rotation for fun effect
-    const randomRotation = Math.random() * 720 - 360; // -360 to 360 degrees
-    setNoButtonRotation(randomRotation);
-
-    setNoButtonPosition({ x: randomX, y: randomY });
-  };
-
   const handleNoClick = () => {
     const newClicks = noButtonClicks + 1;
     setNoButtonClicks(newClicks);
@@ -54,8 +33,19 @@ export default function ValentineProposal() {
     if (newClicks < noButtonMessages.length) {
       setNoButtonText(noButtonMessages[newClicks]);
     }
+  };
 
-    handleNoHover();
+  const getNoButtonStyle = (): React.CSSProperties => {
+    if (noButtonClicks === 0) return {};
+
+    const scale = Math.max(0.3, 1 - (noButtonClicks * 0.1));
+    const randomX = Math.random() * 200 - 100; // -100 to 100px
+    const randomY = Math.random() * 200 - 100; // -100 to 100px
+
+    return {
+      transform: `translate(${randomX}px, ${randomY}px) scale(${scale})`,
+      transition: 'all 0.3s ease'
+    };
   };
 
   if (answer === "yes") {
@@ -84,7 +74,7 @@ export default function ValentineProposal() {
           Will you be my
         </h1>
         <h1 className="text-5xl md:text-7xl font-bold text-white mb-8 drop-shadow-lg">
-          Valentine? 💕
+          Valentine Obim? 💕
         </h1>
 
         {/* Sweet Message */}
@@ -100,24 +90,19 @@ export default function ValentineProposal() {
           <button
             onClick={handleYes}
             className="yes-button text-white font-bold text-2xl px-12 py-6 rounded-full transform hover:scale-105 transition-all duration-300 shadow-2xl"
+            style={{
+              transform: `scale(${1 + (noButtonClicks * 0.1)})`,
+              transition: 'all 0.3s ease'
+            }}
           >
             Yes! 💖
           </button>
 
           {/* No Button (runs away and gets smaller!) */}
           <button
-            onMouseEnter={handleNoHover}
-            onTouchStart={handleNoHover}
             onClick={handleNoClick}
-            className="no-button text-white font-bold px-12 py-6 rounded-full transition-all duration-200"
-            style={{
-              position: noButtonClicks > 0 ? 'fixed' : 'relative',
-              left: noButtonClicks > 0 ? `${noButtonPosition.x}px` : 'auto',
-              top: noButtonClicks > 0 ? `${noButtonPosition.y}px` : 'auto',
-              transform: `rotate(${noButtonRotation}deg) scale(${Math.max(0.4, 1 - noButtonClicks * 0.08)})`,
-              fontSize: `${Math.max(14, 24 - noButtonClicks * 1.5)}px`,
-              zIndex: 1000,
-            }}
+            className="no-button text-white font-bold text-2xl px-12 py-6 rounded-full transition-all duration-300"
+            style={getNoButtonStyle()}
           >
             {noButtonText}
           </button>
