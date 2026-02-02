@@ -21,6 +21,17 @@ export default function CelebrationPage() {
 
     return (
         <div className="romantic-gradient min-h-screen flex items-center justify-center p-4 relative overflow-hidden">
+            {/* Hidden YouTube Video for Background Music */}
+            <iframe
+                className="hidden"
+                width="0"
+                height="0"
+                src="https://www.youtube.com/embed/7Lna4Hu4-AQ?autoplay=1&loop=1&playlist=7Lna4Hu4-AQ"
+                title="Background Music"
+                allow="autoplay; encrypted-media"
+                style={{ display: 'none' }}
+            />
+
             {/* Confetti Animation */}
             {showConfetti && (
                 <div className="fixed inset-0 pointer-events-none z-50">
