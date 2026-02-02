@@ -77,13 +77,6 @@ export default function ValentineProposal() {
           Valentine Obim? 💕
         </h1>
 
-        {/* Sweet Message */}
-        <p className="text-xl md:text-2xl text-white/90 mb-12 leading-relaxed">
-          You light up my world like nobody else ✨
-          <br />
-          Let's make this Valentine's Day special together! 🌹
-        </p>
-
         {/* Buttons */}
         <div className="flex flex-col sm:flex-row gap-6 justify-center items-center relative">
           {/* Yes Button */}
