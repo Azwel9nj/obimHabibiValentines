@@ -83,13 +83,13 @@ export default function CelebrationPage() {
                     <div className="text-7xl md:text-9xl mb-6">
                         🎉 💕 🎊
                     </div>
-                    <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 drop-shadow-lg pulse-heart">
+                    <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 drop-shadow-lg pulse-heart" style={{ fontFamily: "'Great Vibes', cursive" }}>
                         Yay! 💖
                     </h1>
-                    <h2 className="text-3xl md:text-5xl font-bold text-white/95 mb-8 drop-shadow-lg">
+                    <h2 className="text-3xl md:text-5xl font-bold text-white/95 mb-8 drop-shadow-lg" style={{ fontFamily: "'Playfair Display', serif" }}>
                         Best Valentine's Day Ever!
                     </h2>
-                    <p className="text-2xl md:text-3xl text-white/90 mb-12 leading-relaxed">
+                    <p className="text-2xl md:text-3xl text-white/90 mb-12 leading-relaxed" style={{ fontFamily: "'Dancing Script', cursive" }}>
                         You just made me the happiest person alive! ✨
                         <br />
                         Can't wait to spend this special day with you! 🌹
