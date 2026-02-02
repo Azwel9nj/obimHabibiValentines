@@ -6,6 +6,7 @@ export default function ValentineProposal() {
   const [noButtonPosition, setNoButtonPosition] = useState({ x: 0, y: 0 });
   const [noButtonText, setNoButtonText] = useState("No");
   const [noButtonClicks, setNoButtonClicks] = useState(0);
+  const [noButtonRotation, setNoButtonRotation] = useState(0);
 
   const noButtonMessages = [
     "No",
@@ -14,6 +15,13 @@ export default function ValentineProposal() {
     "Think again! 🤔",
     "Please? 🙏",
     "One more chance? 💝",
+    "Last chance! 😢",
+    "Pretty please? 🥹",
+    "I'm begging! 😭",
+    "Don't break my heart! 💔",
+    "Reconsider? 🌹",
+    "You're killing me! 😵",
+    "Fine... 😔",
   ];
 
   const handleYes = () => {
@@ -26,18 +34,22 @@ export default function ValentineProposal() {
     const maxY = window.innerHeight - 80; // button height
     const randomX = Math.random() * maxX;
     const randomY = Math.random() * maxY;
-    
+
+    // Random rotation for fun effect
+    const randomRotation = Math.random() * 720 - 360; // -360 to 360 degrees
+    setNoButtonRotation(randomRotation);
+
     setNoButtonPosition({ x: randomX, y: randomY });
   };
 
   const handleNoClick = () => {
     const newClicks = noButtonClicks + 1;
     setNoButtonClicks(newClicks);
-    
+
     if (newClicks < noButtonMessages.length) {
       setNoButtonText(noButtonMessages[newClicks]);
     }
-    
+
     handleNoHover();
   };
 
@@ -87,16 +99,19 @@ export default function ValentineProposal() {
             Yes! 💖
           </button>
 
-          {/* No Button (runs away!) */}
+          {/* No Button (runs away and gets smaller!) */}
           <button
             onMouseEnter={handleNoHover}
             onTouchStart={handleNoHover}
             onClick={handleNoClick}
-            className="no-button text-white font-bold text-2xl px-12 py-6 rounded-full transition-all duration-200"
+            className="no-button text-white font-bold px-12 py-6 rounded-full transition-all duration-200"
             style={{
               position: noButtonClicks > 0 ? 'fixed' : 'relative',
               left: noButtonClicks > 0 ? `${noButtonPosition.x}px` : 'auto',
               top: noButtonClicks > 0 ? `${noButtonPosition.y}px` : 'auto',
+              transform: `rotate(${noButtonRotation}deg) scale(${Math.max(0.4, 1 - noButtonClicks * 0.08)})`,
+              fontSize: `${Math.max(14, 24 - noButtonClicks * 1.5)}px`,
+              zIndex: 1000,
             }}
           >
             {noButtonText}

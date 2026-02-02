@@ -2,12 +2,17 @@ import { useState, useEffect } from "react";
 
 export default function CelebrationPage() {
     const [showConfetti, setShowConfetti] = useState(true);
+    const [isMusicPlaying, setIsMusicPlaying] = useState(true);
 
     useEffect(() => {
         // Hide confetti after 10 seconds
         const timer = setTimeout(() => setShowConfetti(false), 10000);
         return () => clearTimeout(timer);
     }, []);
+
+    const toggleMusic = () => {
+        setIsMusicPlaying(!isMusicPlaying);
+    };
 
     // Generate confetti pieces
     const confettiColors = ["#ff6b9d", "#c06c84", "#f67280", "#ffa07a", "#ff9aa2", "#FFD700", "#FF69B4"];
@@ -22,15 +27,28 @@ export default function CelebrationPage() {
     return (
         <div className="romantic-gradient min-h-screen flex items-center justify-center p-4 relative overflow-hidden">
             {/* Hidden YouTube Video for Background Music */}
-            <iframe
-                className="hidden"
-                width="0"
-                height="0"
-                src="https://www.youtube.com/embed/7Lna4Hu4-AQ?autoplay=1&loop=1&playlist=7Lna4Hu4-AQ"
-                title="Background Music"
-                allow="autoplay; encrypted-media"
-                style={{ display: 'none' }}
-            />
+            {isMusicPlaying && (
+                <iframe
+                    className="hidden"
+                    width="0"
+                    height="0"
+                    src="https://www.youtube.com/embed/7Lna4Hu4-AQ?autoplay=1&loop=1&playlist=7Lna4Hu4-AQ"
+                    title="Background Music"
+                    allow="autoplay; encrypted-media"
+                    style={{ display: 'none' }}
+                />
+            )}
+
+            {/* Music Control Button */}
+            <button
+                onClick={toggleMusic}
+                className="fixed top-6 right-6 z-50 glass-card rounded-full p-4 hover:scale-110 transition-all duration-300 shadow-2xl group"
+                title={isMusicPlaying ? 'Pause Music' : 'Play Music'}
+            >
+                <div className="text-3xl">
+                    {isMusicPlaying ? '🔊' : '🔇'}
+                </div>
+            </button>
 
             {/* Confetti Animation */}
             {showConfetti && (
