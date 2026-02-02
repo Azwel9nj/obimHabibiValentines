@@ -29,11 +29,16 @@ export default function ValentineProposal() {
   };
 
   const handleNoHover = () => {
-    // Generate random position
-    const maxX = window.innerWidth - 200; // button width
-    const maxY = window.innerHeight - 80; // button height
-    const randomX = Math.random() * maxX;
-    const randomY = Math.random() * maxY;
+    // Generate random position with proper boundaries
+    const padding = 20; // Add padding from edges
+    const buttonWidth = 250; // Approximate button width with padding
+    const buttonHeight = 100; // Approximate button height with padding
+
+    const maxX = Math.max(padding, window.innerWidth - buttonWidth - padding);
+    const maxY = Math.max(padding, window.innerHeight - buttonHeight - padding);
+
+    const randomX = padding + Math.random() * (maxX - padding);
+    const randomY = padding + Math.random() * (maxY - padding);
 
     // Random rotation for fun effect
     const randomRotation = Math.random() * 720 - 360; // -360 to 360 degrees

@@ -119,7 +119,7 @@ export default function CelebrationPage() {
                         <p className="text-white text-lg">You're my forever Valentine</p>
                     </div>
                     <div className="glass-card rounded-2xl p-6 fade-in-up" style={{ animationDelay: '0.7s' }}>
-                        <div className="text-5xl mb-3">💑</div>
+                        <div className="text-5xl mb-3">👩🏽‍❤️‍💋‍👨🏾</div>
                         <p className="text-white text-lg">Together is my favorite place to be</p>
                     </div>
                     <div className="glass-card rounded-2xl p-6 fade-in-up" style={{ animationDelay: '0.9s' }}>
