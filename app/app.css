@@ -1,0 +1,188 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+/* Floating Hearts Animation */
+@keyframes float {
+  0% {
+    transform: translateY(100vh) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100vh) rotate(720deg);
+    opacity: 0;
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes confetti {
+  0% {
+    transform: translateY(-100vh) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh) rotate(720deg);
+    opacity: 0;
+  }
+}
+
+@keyframes sparkle {
+  0%, 100% {
+    opacity: 0;
+    transform: scale(0);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.floating-heart {
+  position: absolute;
+  font-size: 2rem;
+  animation: float linear infinite;
+  pointer-events: none;
+}
+
+.floating-heart:nth-child(1) {
+  left: 10%;
+  animation-duration: 8s;
+  animation-delay: 0s;
+}
+
+.floating-heart:nth-child(2) {
+  left: 25%;
+  animation-duration: 10s;
+  animation-delay: 2s;
+}
+
+.floating-heart:nth-child(3) {
+  left: 40%;
+  animation-duration: 12s;
+  animation-delay: 4s;
+}
+
+.floating-heart:nth-child(4) {
+  left: 55%;
+  animation-duration: 9s;
+  animation-delay: 1s;
+}
+
+.floating-heart:nth-child(5) {
+  left: 70%;
+  animation-duration: 11s;
+  animation-delay: 3s;
+}
+
+.floating-heart:nth-child(6) {
+  left: 85%;
+  animation-duration: 13s;
+  animation-delay: 5s;
+}
+
+.confetti-piece {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  animation: confetti 5s linear infinite;
+  pointer-events: none;
+}
+
+.fade-in-up {
+  animation: fadeInUp 1s ease-out forwards;
+}
+
+.pulse-heart {
+  animation: pulse 2s ease-in-out infinite;
+}
+
+/* Glassmorphism Card */
+.glass-card {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 8px 32px 0 rgba(255, 182, 193, 0.37);
+}
+
+/* Romantic Gradient Background */
+.romantic-gradient {
+  background: linear-gradient(135deg, 
+    #ff6b9d 0%, 
+    #c06c84 25%, 
+    #f67280 50%, 
+    #ffa07a 75%, 
+    #ff9aa2 100%
+  );
+  background-size: 400% 400%;
+  animation: gradientShift 15s ease infinite;
+}
+
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Button Styles */
+.yes-button {
+  background: linear-gradient(135deg, #ff6b9d, #f67280);
+  box-shadow: 0 4px 15px rgba(255, 107, 157, 0.4);
+  transition: all 0.3s ease;
+}
+
+.yes-button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 20px rgba(255, 107, 157, 0.6);
+}
+
+.no-button {
+  background: rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  transition: all 0.2s ease;
+}
+
+.sparkle {
+  animation: sparkle 1.5s ease-in-out infinite;
+}
